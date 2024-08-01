@@ -47,7 +47,7 @@ const App = () => {
         title: 'Success!',
         text: 'Your request has been submitted successfully.',
       }).then(() => {
-        window.location.href = '/thank-you';
+        window.location.reload();
       });
 
     } catch (error) {
