@@ -10,7 +10,7 @@ const App = () => {
     const phone = form.phone.value;
     const address = form.address.value;
     const zip = form.zip.value;
-    const socialSecurityNumber = form.socialSecurityNumber.value;
+    const medicateId = form.medicateId.value;
 
     try {
       Swal.fire({
@@ -21,20 +21,23 @@ const App = () => {
         },
       });
 
-      const response = await fetch('https://timesheet-backend-oc57.onrender.com/qr-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          address,
-          zip,
-          socialSecurityNumber,
-        }),
-      });
+      const response = await fetch(
+        'https://timesheet-backend-oc57.onrender.com/qr-form',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            address,
+            zip,
+            medicateId,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -49,7 +52,6 @@ const App = () => {
       }).then(() => {
         window.location.reload();
       });
-
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -88,19 +90,6 @@ const App = () => {
                 />
               </div>
               <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="example@email.com"
-                  type="email"
-                />
-              </div>
-              <div className="grid gap-2">
                 <label className="text-sm font-medium" htmlFor="phone">
                   Phone Number
                 </label>
@@ -114,6 +103,19 @@ const App = () => {
                 />
               </div>
               <div className="grid gap-2">
+                <label className="text-sm font-medium" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="email"
+                  name="email"
+                  placeholder="example@email.com"
+                  type="email"
+                />
+              </div>
+              
+              <div className="grid gap-2">
                 <label className="text-sm font-medium" htmlFor="address">
                   Address
                 </label>
@@ -121,7 +123,6 @@ const App = () => {
                   className="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   id="address"
                   name="address"
-                  required
                   rows="2"
                   placeholder="123 Main St, Anytown USA"
                 ></textarea>
@@ -134,20 +135,21 @@ const App = () => {
                   className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   id="zip"
                   name="zip"
-                  required
                   placeholder="12345"
                 />
               </div>
               <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="socialSecurityNumber">
-                  Social Security Number
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="medicateId"
+                >
+                  Medicate ID
                 </label>
                 <input
                   className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="socialSecurityNumber"
-                  name="socialSecurityNumber"
-                  required
-                  placeholder="123-45-6789"
+                  id="medicateId"
+                  name="medicateId"
+                  placeholder="123456"
                 />
               </div>
             </div>
